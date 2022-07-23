@@ -1,0 +1,10 @@
+# ignore语法配置
+
+/dist/*
+*.local
+/node_modules/**
+
+**/*.svg
+**/*.sh
+**/*.json
+/public/*

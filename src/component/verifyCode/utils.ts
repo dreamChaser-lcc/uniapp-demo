@@ -5,7 +5,7 @@
  * @returns
  */
 export const getRandom = (min: number, max: number) => {
-  return Math.floor(Math.random() * (max - min) + min);
+	return Math.floor(Math.random() * (max - min) + min);
 };
 /**
  * 获取 0-9|a-z|A-z 验证码数组
@@ -13,30 +13,30 @@ export const getRandom = (min: number, max: number) => {
  * @returns string[]
  */
 const getVerifyCodeArr = (length: number): string[] => {
-  const unicodeArr = Array.from({ length }, () => {
-    const actionType = getRandom(1, 3);
-    let code = "0";
-    if (actionType === 1) {
-      const num = getRandom(48, 57);
-      code = String.fromCharCode.call(null,num);
-    }
-    if (actionType === 2) {
-      const uppercase = getRandom(65, 90);
-      code = String.fromCharCode.call(null,uppercase);
-    }
-    if (actionType === 2) {
-      const lowercase = getRandom(97, 122);
-      code = String.fromCharCode.call(null,lowercase);
-    }
-    return code;
-  });
-  return unicodeArr;
+	const unicodeArr = Array.from({ length }, () => {
+		const actionType = getRandom(1, 3);
+		let code = "0";
+		if (actionType === 1) {
+			const num = getRandom(48, 57);
+			code = String.fromCharCode.call(null, num);
+		}
+		if (actionType === 2) {
+			const uppercase = getRandom(65, 90);
+			code = String.fromCharCode.call(null, uppercase);
+		}
+		if (actionType === 2) {
+			const lowercase = getRandom(97, 122);
+			code = String.fromCharCode.call(null, lowercase);
+		}
+		return code;
+	});
+	return unicodeArr;
 };
 export interface CodeInfo {
-  /**验证码数组 */
-  codeArr: string[];
-  /**验证码字符串 */
-  codeStr: string;
+	/**验证码数组 */
+	codeArr: string[];
+	/**验证码字符串 */
+	codeStr: string;
 }
 
 /**
@@ -45,10 +45,10 @@ export interface CodeInfo {
  * @returns CodeInfo
  */
 export const getCodeInfo = (lenght: number): CodeInfo => {
-  const codeArr = getVerifyCodeArr(lenght);
-  const codeStr = codeArr.join("");
-  return {
-    codeArr,
-    codeStr,
-  };
+	const codeArr = getVerifyCodeArr(lenght);
+	const codeStr = codeArr.join("");
+	return {
+		codeArr,
+		codeStr,
+	};
 };

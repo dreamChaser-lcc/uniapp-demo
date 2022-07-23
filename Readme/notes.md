@@ -8,6 +8,15 @@
 - 与vue-cli不同
 - 只需要安装sass 不需要node-sass和loader-sass
 
+## 工程化配置
+```bash
+# git 提交hooks插件
+yarn add husky lint-staged  -D
+# eslint
+yarn add eslint eslint-plugin-vue @typescript-eslint/eslint-plugin @typescript-eslint/parser -D
+# prettier
+yarn add prettier
+```
 ## 部署（未解决）
 
 ## canvas 不渲染问题

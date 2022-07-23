@@ -5,11 +5,10 @@
  */
 const apiString: string[] = ["navigateTo", "redirectTo", "switchTab"];
 apiString.forEach((item) => {
-  uni.addInterceptor(item, {
-    invoke: (e) => {
-      
-      uni.reLaunch({ url: "/pages/login/index" });
-      return false;
-    },
-  });
+	uni.addInterceptor(item, {
+		invoke: (e) => {
+			uni.reLaunch({ url: "/pages/login/index" });
+			return false;
+		},
+	});
 });
