@@ -7,12 +7,20 @@
 		<form @submit="formSubmit">
 			<view class="form-item">
 				<i class="fa fa-user" />
-				<input class="uni-input" type="text" placeholder="请输入用户名" />
+				<input
+					name="user_name"
+					v-model="initData.user_name"
+					class="uni-input"
+					type="text"
+					placeholder="请输入用户名"
+				/>
 			</view>
 			<view class="form-item">
 				<i class="fa fa-lock" />
 				<input
 					class="uni-input"
+					name="password"
+					v-model="initData.password"
 					:password="pwdProps.password"
 					type="text"
 					placeholder="请输入密码"
@@ -20,14 +28,16 @@
 				<i :class="pwdProps.suffix" @click="changePwdVisble" />
 			</view>
 			<view class="form-btns">
-				<button form-type="submit">登录</button>
+				<button :loading="isLoading" form-type="submit">登录</button>
 			</view>
 		</form>
 	</view>
 </template>
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import logoUrl from "@/static/login_logo.png";
+import { user_login_api } from "@/api/user/inde";
+import { setTokenToStorage } from "@/utils/base.utils";
 // import VerifyCode from "@/component/verifyCode";
 export default defineComponent({
 	name: "login-page",
@@ -35,7 +45,19 @@ export default defineComponent({
 		// VerifyCode,
 	},
 	setup() {
-		const formSubmit = () => {};
+		const initData = ref({ user_name: "Admin", password: "123456" });
+		const isLoading = ref<boolean>(false);
+
+		const formSubmit = async (e: any) => {
+			const { user_name, password } = e.detail.value;
+			isLoading.value = true;
+			const res = await user_login_api(user_name, password);
+			isLoading.value = false;
+			if (res) {
+				setTokenToStorage(res?.result?.token ?? "none");
+				uni.reLaunch({ url: "/pages/index/index" });
+			}
+		};
 		const pwdProps = reactive<{ password: boolean; suffix: string }>({
 			password: true,
 			suffix: "fa fa-eye-slash",
@@ -48,7 +70,9 @@ export default defineComponent({
 
 		return {
 			logoUrl,
+			initData,
 			pwdProps,
+			isLoading,
 			formSubmit,
 			changePwdVisble,
 		};

@@ -1,3 +1,6 @@
+import { user_auth_token_api } from "@/api/user/inde";
+import { SUCCESS_STATUS_CODE } from "@/constant/base.constant";
+
 /**
  * 路由跳转拦截
  * author:lcc
@@ -7,8 +10,10 @@ const apiString: string[] = ["navigateTo", "redirectTo", "switchTab"];
 apiString.forEach((item) => {
 	uni.addInterceptor(item, {
 		invoke: (e) => {
-			uni.reLaunch({ url: "/pages/login/index" });
-			return false;
+			/**token过期或不存在 */
+			user_auth_token_api().catch(() => {
+				uni.reLaunch({ url: "/pages/login/index" });
+			});
 		},
 	});
 });

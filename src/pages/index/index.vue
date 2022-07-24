@@ -1,9 +1,6 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png" />
-		<view class="text-area">
-			<text class="title">{{ title }}</text>
-		</view>
+	<u-button>月落</u-button>
 	</view>
 </template>
 

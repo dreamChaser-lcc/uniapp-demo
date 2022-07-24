@@ -1,3 +1,10 @@
+<!--
+ * @Author: lcc
+ * @Date: 2022-07-17 13:36:00
+ * @LastEditors: lcc
+ * @LastEditTime: 2022-07-24 23:59:09
+ * @Description: 入口文件
+-->
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
 onLaunch(() => {
