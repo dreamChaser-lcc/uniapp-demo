@@ -2,7 +2,7 @@
  * @Author: lcc
  * @Date: 2022-07-17 13:36:00
  * @LastEditors: lcc
- * @LastEditTime: 2022-07-24 23:59:09
+ * @LastEditTime: 2022-07-25 03:28:09
  * @Description: 入口文件
 -->
 <script setup lang="ts">
@@ -19,4 +19,5 @@ onHide(() => {
 </script>
 <style>
 @import "./static/iconfont/index.css";
+@import "./static/css/global.scss";
 </style>

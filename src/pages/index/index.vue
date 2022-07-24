@@ -1,38 +1,50 @@
 <template>
+	<u-notice-bar mode="vertical" :list="['当前页面仅实现UI']" :autoplay="false"></u-notice-bar>
+	<view class="header">
+		<view class="search">
+			<u-search
+				v-model="searchValue"
+				:clearabled="true"
+				style="background: #f2f2f2"
+				shape="square"
+			></u-search>
+		</view>
+		<Menus></Menus>
+		<SubMenus></SubMenus>
+	</view>
 	<view class="content">
-	<u-button>月落</u-button>
+		<Affair></Affair>
 	</view>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-const title = ref("Hello");
+import Menus from "./subPage/menus/index.vue";
+import SubMenus from "./subPage/subMenus/index.vue";
+import Affair from "./subPage/affair/index.vue";
+
+const searchValue = ref("");
 </script>
 
-<style>
-.content {
+<style lang="scss" scoped>
+$SHARE_WIDTH: 320px;
+.header {
+	background-color: #4562ff;
+	height: 200px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	position: relative;
+	.search {
+		width: $SHARE_WIDTH;
+		height: 50px;
+		padding-top: 20px;
+	}
 }
-
-.logo {
-	height: 200rpx;
-	width: 200rpx;
-	margin-top: 200rpx;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 50rpx;
-}
-
-.text-area {
+.content {
+	margin-top: 120px;
 	display: flex;
 	justify-content: center;
-}
-
-.title {
-	font-size: 36rpx;
-	color: #8f8f94;
+	align-items: center;
 }
 </style>

@@ -17,3 +17,10 @@ export const setTokenToStorage = (data: string) => {
 export const getTokenFormStorage = () => {
 	return uni.getStorageSync(`${Token_Field_Name}`);
 };
+/**
+ * @description 获取token
+ * @param data
+ */
+ export const removeTokenFormStorage = () => {
+	return uni.removeStorageSync(`${Token_Field_Name}`);
+};

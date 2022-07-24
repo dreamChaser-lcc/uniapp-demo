@@ -1,31 +1,50 @@
+<!--
+ * @Author: lcc
+ * @Date: 2022-07-17 14:33:01
+ * @LastEditors: lcc
+ * @LastEditTime: 2022-07-25 05:15:27
+ * @Description: 工作台页面
+-->
 <template>
-	<view class="content">
-		<view class="text-area">
-			<text class="title">{{ title }}</text>
-		</view>
-	</view>
+	<u-notice-bar mode="vertical" :list="['当前页面仅实现UI']" :autoplay="false"></u-notice-bar>
+	<u-tabs-swiper
+		ref="tabs"
+		:current="current"
+		:list="list"
+		@change="tabsChange"
+		:is-scroll="false"
+	></u-tabs-swiper>
+	<swiper :current="current">
+		<swiper-item class="swiper-item" v-for="({ label }, index) in tabsPaneConfig" :key="index">
+			<u-empty :text="`${label}_待开发设计中`" mode="list"></u-empty>
+		</swiper-item>
+	</swiper>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-const title = ref("Hello");
-uni.request({
-	url: "/api/user/register", //仅为示例，并非真实接口地址。
-	data: {
-		user_name: "Admin1",
-		password: "123456",
+
+const current = ref<number>(0);
+const tabsChange = (index: number) => {
+	current.value = index;
+};
+// 内容配置
+const tabsPaneConfig = [{ label: "Tab1" }, { label: "Tab2" }, { label: "Tab3" }];
+const list = [
+	{
+		name: "Tab1",
 	},
-	method: "POST",
-	header: {
-		"custom-header": "hello", //自定义请求头信息
+	{
+		name: "Tab2",
 	},
-	success: (res) => {
-		console.log(res.data);
+	{
+		name: "Tab3",
+		count: 5,
 	},
-});
+];
 </script>
 
-<style>
+<style lang="scss" scoped>
 .content {
 	display: flex;
 	flex-direction: column;
