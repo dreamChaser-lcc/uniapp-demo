@@ -25,3 +25,15 @@ uniapp-demo
 ├─ tsconfig.json                  // ts 配置文件   
 ├─ vite.config.ts                 // vite 配置文件    
 └─ yarn.lock                      // 依赖相关版本锁定信息  
+
+## 相关依赖
+| ...            | ...                               |
+| -------------- | --------------------------------- |
+| 打包及构建工具 | vite2                             |
+| 语言           | typescript                        |
+| 框架           | vue3.2 , uniapp                   |
+| UI组件库       | vk-uview-ui (兼容vue3&vue2)       |
+| css预处理器    | sass                              |
+| 屏幕适配       | postcss-px-to-viewport(基于vw&vh) |
+| 状态管理       | vuex(内置),pinia(未使用)          |
+| 代码规范       | husky,lint-staged,eslint,prettier |
