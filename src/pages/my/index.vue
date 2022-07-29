@@ -2,7 +2,7 @@
  * @Author: lcc
  * @Date: 2022-07-17 14:26:25
  * @LastEditors: lcc
- * @LastEditTime: 2022-07-25 05:23:56
+ * @LastEditTime: 2022-07-28 01:23:54
  * @Description: 
 -->
 <template>
@@ -24,7 +24,7 @@
 	</view>
 	<view class="menus-gird">
 		<u-grid :col="3">
-			<u-grid-item v-for="(v, i) in [1, 2, 3]" class="grid-item">
+			<u-grid-item v-for="(v, i) in [1, 2, 3]" class="grid-item" :key="i">
 				<u-badge count="9" :offset="[20, 20]"></u-badge>
 				<u-icon name="eye" :size="46"></u-icon>
 				<view class="grid-text">{{ "功能" + (i + 1) }}</view>

@@ -14,22 +14,43 @@ type IResponseDataType = IResponseData | false;
  * @param params 请求参数
  * @param params 是否携带token
  */
-export const POST = (url: string, params?: any, hasToken = true) => {
+export const POST = async(url: string, params?: any, hasToken = true) => {
+	let result;
+	const token = getTokenFormStorage() ?? "";
+	const header = hasToken ? { Authorization: `Bearer ${token}` } : {};
 	// 微信小程序执行
 	// #ifdef MP-WEIXIN
-	// return {} as IResponseDataType;
+	result = new Promise<IResponseDataType>((resolve, reject) => {
+		wx.request({
+			url: BASE_SEVER_URL + url,
+			data: params,
+			method: "POST",
+			header,
+			success: (res) => {
+				const data = res?.data as IResponseData;
+				if (data?.code === SUCCESS_STATUS_CODE) return resolve(data);
+				else {
+					uni.showToast({ title: data?.message ?? "服务器访问异常" });
+					return reject(false);
+				}
+			},
+			fail: (err) => {
+				uni.showToast({ title: "服务器访问异常" });
+				return reject(false);
+			},
+		});
+	});
+	return result;
 	// #endif
 
 	// 非微信小程序执行
 	// #ifndef MP-WEIXIN
-	const token = getTokenFormStorage() ?? "";
-	const header = hasToken ? { Authorization: `Bearer ${token}` } : {};
-	const result = new Promise<IResponseDataType>((resolve, reject) => {
+	result = new Promise<IResponseDataType>((resolve, reject) => {
 		uni.request({
 			url: url,
 			data: params,
 			method: "POST",
-      header,
+			header,
 			success: (res) => {
 				const data = res?.data as IResponseData;
 				if (data?.code === SUCCESS_STATUS_CODE) return resolve(data);

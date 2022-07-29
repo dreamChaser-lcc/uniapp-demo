@@ -2,17 +2,17 @@
  * @Author: lcc
  * @Date: 2022-07-25 01:35:43
  * @LastEditors: lcc
- * @LastEditTime: 2022-07-25 02:11:16
+ * @LastEditTime: 2022-07-28 01:23:23
  * @Description: 头部第二行菜单
 -->
 <template>
 	<view class="wrap">
 		<view class="menus-items">
-			<view class="icon-wrap" v-for="({ ...rest }, index) in menusConfig">
+			<view class="icon-wrap" v-for="({ ...rest }, index) in menusConfig" :key="index">
 				<view class="icon">
 					<u-icon v-bind="rest"></u-icon>
 				</view>
-				<span class="icon-label">{{ `菜单${index+1}` }}</span>
+				<span class="icon-label">{{ `菜单${index + 1}` }}</span>
 			</view>
 		</view>
 	</view>
@@ -22,13 +22,14 @@
 import { menusConfig } from "./menuConfig";
 </script>
 <style lang="scss" scoped>
-$SHARE_WIDTH:320px;
+$SHARE_WIDTH: 320px;
 .wrap {
 	width: $SHARE_WIDTH;
 	height: 150px;
 	position: absolute;
 	bottom: 0;
-	transform: translate(0, 70%);
+	left: 50%;
+	transform: translate(-50%, 70%);
 	background-color: #fff;
 	border-radius: 8px;
 	// border: solid #000;

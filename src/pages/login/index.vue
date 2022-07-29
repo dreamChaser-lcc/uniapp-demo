@@ -6,7 +6,7 @@
 	<view class="form-field">
 		<form @submit="formSubmit">
 			<view class="form-item">
-				<i class="fa fa-user" />
+				<u-icon name="account" />
 				<input
 					name="user_name"
 					v-model="initData.user_name"
@@ -16,7 +16,7 @@
 				/>
 			</view>
 			<view class="form-item">
-				<i class="fa fa-lock" />
+				<u-icon name="lock" />
 				<input
 					class="uni-input"
 					name="password"
@@ -25,7 +25,7 @@
 					type="text"
 					placeholder="请输入密码"
 				/>
-				<i :class="pwdProps.suffix" @click="changePwdVisble" />
+				<u-icon :name="pwdProps.suffix" @click="changePwdVisble" />
 			</view>
 			<view class="form-btns">
 				<button :loading="isLoading" form-type="submit">登录</button>
@@ -55,17 +55,17 @@ export default defineComponent({
 			isLoading.value = false;
 			if (res) {
 				setTokenToStorage(res?.result?.token ?? "none");
-				uni.reLaunch({ url: "/pages/index/index" });
+				uni.switchTab({ url: "/pages/index/index" });
 			}
 		};
 		const pwdProps = reactive<{ password: boolean; suffix: string }>({
 			password: true,
-			suffix: "fa fa-eye-slash",
+			suffix: "eye-off",
 		});
 		/**改变密码可见 */
 		const changePwdVisble = () => {
 			pwdProps.password = !pwdProps.password;
-			pwdProps.suffix = `fa ${pwdProps.password ? "fa-eye-slash" : "fa-eye"}`;
+			pwdProps.suffix = `${pwdProps.password ? "eye-off" : "eye"}`;
 		};
 
 		return {

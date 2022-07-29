@@ -2,7 +2,7 @@
  * @Author: lcc
  * @Date: 2022-07-25 02:34:16
  * @LastEditors: lcc
- * @LastEditTime: 2022-07-25 03:24:30
+ * @LastEditTime: 2022-07-28 00:53:15
  * @Description: 待办事项
 -->
 <template>
@@ -12,9 +12,9 @@
 				<u-grid :col="3">
 					<u-grid-item
 						v-for="({ label, num }, i) in girdItemConfig"
+						:key="label"
 						bg-color="#E7F1FF"
 						:custom-style="itemStyle"
-						class="grid-item"
 					>
 						<view>{{ label + (i + 1) }}</view>
 						<view>{{ num }}</view>
@@ -54,10 +54,6 @@ $SHARE_WIDTH: 320px;
 .wrap {
 	width: $SHARE_WIDTH;
 	height: 150px;
-	box-shadow: 0 0 1px 1px #f0e7e7;
-	.grid-item {
-		display: flex;
-		align-items: flex-start;
-	}
+	// box-shadow: 0 0 1px 1px #f0e7e7;
 }
 </style>

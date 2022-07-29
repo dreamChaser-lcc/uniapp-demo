@@ -2,12 +2,12 @@
  * @Author: lcc
  * @Date: 2022-07-25 01:35:43
  * @LastEditors: lcc
- * @LastEditTime: 2022-07-25 02:08:51
+ * @LastEditTime: 2022-07-28 01:23:15
  * @Description: 头部第一行子菜单
 -->
 <template>
 	<view class="wrap">
-		<view class="icon-wrap" v-for="{ label, ...rest } in menusConfig">
+		<view class="icon-wrap" v-for="{ label, ...rest } in menusConfig" :key="label">
 			<view class="icon">
 				<u-icon v-bind="rest"></u-icon>
 			</view>
@@ -45,7 +45,7 @@ const menusConfig = [
 ];
 </script>
 <style lang="scss" scoped>
-$SHARE_WIDTH:320px;
+$SHARE_WIDTH: 320px;
 .wrap {
 	margin-top: 20px;
 	width: $SHARE_WIDTH;
